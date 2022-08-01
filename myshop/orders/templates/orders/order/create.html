@@ -15,6 +15,7 @@
             {{item.quantity}} x {{item.product.name}}
             <span> $ {{cart.get_total_price}} </span>
         </li>
+        {% endfor %}
     </ul>
     <p>Total : ${{cart.get_total_price}}</p>
 </div>
@@ -23,3 +24,4 @@
     <p><input type="submit" value="Place order"></p>
     {% csrf_token %}
 </form>
+{% endblock %}
