@@ -29,6 +29,7 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
+    'payment.apps.PaymentConfig',
     
 ]
 
@@ -58,6 +60,8 @@ ROOT_URLCONF = 'myshop.urls'
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 CART_SESSION_ID = 'cart'
 
@@ -110,6 +114,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Braintree settings
+BRAINTREE_MERCHANT_ID = '789b3g42qyk47d5h'
+BRAINTREE_PUBLIC_KEY = 'thvtqp73s25gh5h8'
+BRAINTREE_PRIVATE_KEY = '5fa75cfa7125e8c367854989ddafadcf'
+
+import braintree
+
+BRAINTREE_CONF = braintree.Configuration(braintree.Environment.Sandbox,BRAINTREE_MERCHANT_ID,BRAINTREE_PUBLIC_KEY , BRAINTREE_PRIVATE_KEY)
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
